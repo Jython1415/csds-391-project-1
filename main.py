@@ -1,22 +1,27 @@
 import sys
+from EightPuzzle import *
 
+# MAIN
 def main():
     commands = getCommands()
+    game = EightPuzzle()
     
     for command in commands:
-        run(command)
+        run(command, game)
     
+# Reads the commands from the inputted text file
 def getCommands() -> list:
     with open(sys.argv[1], "r") as f:        
         return list(map(lambda i: i.replace("\n", ""), f.readlines()))
 
-def run(command: str):
+# Interprets and runs the input command
+def run(command: str, game: EightPuzzle):
     words = command.split(" ")
 
     if words[0] == "setState":
-        print("run setState")
+        setState(words, game)
     elif words[0] == "printState":
-        print("run printState")
+        printState(game)
     elif words[0] == "move":
         print("run move")
     elif words[0] == "randomizeState":
@@ -32,6 +37,14 @@ def run(command: str):
         print("run maxNodes")
     else:
         print("invalid command")
+
+# setState
+def setState(command: list, game: EightPuzzle):
+    game.setState(' '.join(command[1:4]))
+
+# printState
+def printState(game: EightPuzzle):
+    print(game)
 
 if __name__ == "__main__":
     main()

@@ -1,4 +1,7 @@
-line 1
-line 2
-this is another line
-this is a line with some punctuation. Wow1
+setState b12 345 678
+printState
+move up
+randomizeState 1000
+solve A-star h1
+solve beam 10
+maxNodes 1000
