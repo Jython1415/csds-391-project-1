@@ -1,7 +1,9 @@
 setState b12 345 678
 printState
-move up
+move down
+printState
 randomizeState 1000
+printState
 solve A-star h1
 solve beam 10
 maxNodes 1000

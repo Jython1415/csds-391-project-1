@@ -1,8 +1,14 @@
 import sys
 from EightPuzzle import *
+import random
+
+# Constants
+goalState = "b12345678"
 
 # MAIN
 def main():
+    random.seed(0)
+    
     commands = getCommands()
     game = EightPuzzle()
     
@@ -15,36 +21,70 @@ def getCommands() -> list:
         return list(map(lambda i: i.replace("\n", ""), f.readlines()))
 
 # Interprets and runs the input command
-def run(command: str, game: EightPuzzle):
-    words = command.split(" ")
+def run(rawCommand: str, game: EightPuzzle):
+    command = rawCommand.split(" ")
 
-    if words[0] == "setState":
-        setState(words, game)
-    elif words[0] == "printState":
+    if command[0] == "setState":
+        setState(command, game)
+    elif command[0] == "printState":
         printState(game)
-    elif words[0] == "move":
-        print("run move")
-    elif words[0] == "randomizeState":
-        print("run randomizeState")
-    elif words[0] == "solve":
-        if words[1] == "A-star":
+    elif command[0] == "move":
+        move(command, game)
+    elif command[0] == "randomizeState":
+        randomizeState(command, game)
+    elif command[0] == "solve":
+        if command[1] == "A-star":
             print("run A-star")
-        elif words[1] == "beam":
+        elif command[1] == "beam":
             print("run beam")
         else:
             print("invalid solve algorithm")
-    elif words[0] == "maxNodes":
+    elif command[0] == "maxNodes":
         print("run maxNodes")
     else:
         print("invalid command")
 
 # setState
 def setState(command: list, game: EightPuzzle):
-    game.setState(' '.join(command[1:4]))
+    game.setState((''.join(command[1:4])))
 
 # printState
 def printState(game: EightPuzzle):
     print(game)
+
+# move <direction>
+def move(command: list, game: EightPuzzle):
+    direction = None
+    
+    print(command[0])
+    
+    if command[1] == "right":
+        direction = Direction.RIGHT
+    elif command[1] == "up":
+        direction = Direction.UP
+    elif command[1] == "left":
+        direction = Direction.LEFT
+    elif command[1] == "down":
+        direction = Direction.DOWN
+    else:
+        print(f"invalid direction: {command[1]}")
+    
+    game.move(direction)
+
+# randomizeState <n>
+def randomizeState(command: list, game: EightPuzzle):
+    
+    try:
+        n = int(command[1])
+    except:
+        print("Invalid number of moves (not an integer)")
+        return
+    
+    game.setState(goalState)
+    
+    for _ in range(n):
+        game.move(random.choice(list(game.getValidMoves())))
+    
 
 if __name__ == "__main__":
     main()
