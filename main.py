@@ -46,14 +46,27 @@ def run(rawCommand: str, game: EightPuzzle) -> EightPuzzle:
         return game
     elif command[0] == "solve":
         if command[1] == "A-star":
-            newGame = aStar(command, game)
-            if newGame == None:
-                print("no return")
-                return game
+            result = aStar(command, game)
+            if result[0] == "solved":
+                path = result[1].getPath()
+                print(f"solved in {path[2]} moves: {path[1]}")
+                return result[1]
+            elif result[0] == "maxNodes":
+                print(f"Could not be solved within the node limit: generated {result[2]} nodes")
+                return result[1]
             else:
-                return newGame
+                return game
         elif command[1] == "beam":
-            return beam(command, game)
+            result = beam(command, game)
+            if result[0] == "solved":
+                path = result[1].getPath()
+                print(f"solved in {path[2]} moves: {path[1]}")
+                return result[1]
+            elif result[0] == "maxNodes":
+                print(f"Could not be solved within the node limit: generated {result[2]} nodes")
+                return result[1]
+            else:
+                return game
         else:
             print("invalid solve algorithm")
             return game

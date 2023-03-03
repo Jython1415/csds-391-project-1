@@ -254,4 +254,20 @@ class EightPuzzle():
             self.moves += 1
     
     def getPath(self):
-        return (self.movesList, len(self.movesList))
+        return (self.movesList, len(self.movesList), self.getPathString())
+    
+    def getPathString(self):
+        moves = []
+        for move in self.movesList:
+            match move:
+                case Direction.RIGHT:
+                    moves.append("right")
+                case Direction.UP:
+                    moves.append("up")
+                case Direction.LEFT:
+                    moves.append("left")
+                case Direction.DOWN:
+                    moves.append("down")
+                    
+        return ", ".join(moves)
+        
