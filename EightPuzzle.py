@@ -1,5 +1,5 @@
 from enum import Enum
-
+import copy
 
 class Direction(Enum):
     RIGHT = 0
@@ -34,8 +34,13 @@ class EightPuzzle():
         return self.state.index("b")
 
     # Set state
-    def setState(self, newState: str):
-        self.state = [i for i in newState]
+    def setState(self, newState: list):
+        if type(newState) == str:
+            l = list()
+            for char in newState:
+                l.append(char)
+            newState = l
+        self.state = copy.copy(newState)
 
     # Get square
     def getSquare(self, square: int) -> str:

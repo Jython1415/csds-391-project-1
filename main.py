@@ -16,8 +16,10 @@ def main():
     r = random.Random()
     r.seed(0)
     
-    for i in range(10):
-        print(r.randint(1,2))
+    # l = list()
+    # for _ in range(3):
+    #     l.append(str(r.randint(0,9)))
+    # print("".join(l))
     
     commands = getCommands()
     game = EightPuzzle()
@@ -37,7 +39,7 @@ def run(rawCommand: str, game: EightPuzzle):
     if command[0] == "setState":
         setState(command, game)
     elif command[0] == "printState":
-        printState(f"{game} {game.isGoal()}")
+        printState(game)
     elif command[0] == "move":
         move(command, game)
     elif command[0] == "randomizeState":
@@ -56,11 +58,15 @@ def run(rawCommand: str, game: EightPuzzle):
 
 # setState
 def setState(command: list, game: EightPuzzle):
-    game.setState((''.join(command[1:4])))
+    stateStr = "".join(command[1:4])
+    stateList = list()
+    for char in stateStr:
+        stateList.append(char)
+    game.setState(stateList)
 
 # printState
 def printState(game: EightPuzzle):
-    print(game)
+    print(str(game) + " " + str(game.moves))
 
 # move <direction>
 def move(command: list, game: EightPuzzle):
@@ -85,6 +91,11 @@ def move(command: list, game: EightPuzzle):
 def randomizeState(command: list, game: EightPuzzle):
     global r
     
+    # l = list()
+    # for _ in range(3):
+    #     l.append(str(r.randint(0,9)))
+    # print("".join(l))
+    
     try:
         n = int(command[1])
     except:
@@ -92,6 +103,7 @@ def randomizeState(command: list, game: EightPuzzle):
         return
     
     game.setState(goalState)
+    game.resetMoves()
     
     for _ in range(n):
         game.move(r.choice(list(game.getValidMoves())))
