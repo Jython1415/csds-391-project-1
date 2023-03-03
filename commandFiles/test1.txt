@@ -1,15 +1,1017 @@
-setState b12 345 678
-randomizeState 100
 printState
-solve beam 15
+randomizeState 1000
 printState
-
-randomizeState 100
+randomizeState 1000
 printState
-solve beam 15
+randomizeState 1000
 printState
-
-setState 756 143 28b
+randomizeState 1000
 printState
-solve beam 15
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
+printState
+randomizeState 1000
 printState

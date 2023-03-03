@@ -1,5 +1,5 @@
 from enum import Enum
-import copy
+from copy import copy, deepcopy
 
 class Direction(Enum):
     RIGHT = 0
@@ -30,6 +30,15 @@ class EightPuzzle():
         base = ''.join(self.state)
         return base[0:3] + " " + base[3:6] + " " + base[6:9]
 
+    def __deepcopy__(self, memo):
+        cls = self.__class__
+        result = cls.__new__(cls)
+        memo[id(self)] = result
+        for k, v in self.__dict__.items():
+            if k != "parent":
+                setattr(result, k, deepcopy(v, memo))
+        return result
+
     # bPos
     def getBlankPos(self):
         return self.state.index("b")
@@ -41,7 +50,7 @@ class EightPuzzle():
             for char in newState:
                 l.append(char)
             newState = l
-        self.state = copy.copy(newState)
+        self.state = copy(newState)
 
     # Get square
     def getSquare(self, square: int) -> str:
@@ -123,9 +132,10 @@ class EightPuzzle():
     def h2(self) -> int:
         totalDistance = 0
         for tile in self.state:
-            currentPos = self.getCurrentPos(tile)
-            goalPos = EightPuzzle.getGoalPos(tile)
-            totalDistance += abs(currentPos[0] - goalPos[0]) + abs(currentPos[1] - goalPos[1])
+            if tile != "b":
+                currentPos = self.getCurrentPos(tile)
+                goalPos = EightPuzzle.getGoalPos(tile)
+                totalDistance += abs(currentPos[0] - goalPos[0]) + abs(currentPos[1] - goalPos[1])
         return totalDistance
 
     def h(self) -> int:

@@ -9,19 +9,82 @@ import copy
 # Constants
 goalState = "b12345678"
 r:random.Random = None
+printResultMessages = False
+
+# Data collecting
+aStar1Results = []
+aStar2Results = []
+# beam1Results = []
+beam2Results = []
 
 # MAIN
 def main():
     global r
+    global aStar1Results
+    global aStar2Results
+    # global beam1Results 
+    global beam2Results 
+
     r = random.Random()
     r.seed("hi")
         
     commands = getCommands()
     game = EightPuzzle()
-    maxNodes = -1
+    maxNodes = [-1]
     
+    print(f"{len(commands)} to run")
+    i = 0
     for command in commands:
-        game = run(command, game)
+        if (i % int(len(commands)/1000) == 0):
+            print(f"{int((i/len(commands))*1000)/10}% done")
+        game = run(command, game, maxNodes)
+        i += 1
+    
+    allResults = []
+    allResults.extend(aStar1Results)
+    allResults.extend(aStar2Results)
+    allResults.extend(beam2Results)
+    numberSolved = dict()
+    for result in allResults:
+        if result[0] == "solved":
+            if result[3] in numberSolved:
+                numberSolved[result[3]] = numberSolved[result[3]] + 1
+            else:
+                numberSolved[result[3]] = 1
+    for key in numberSolved.keys():
+        print(f"{key}, {numberSolved[key]}")
+
+    a1Solved = 0
+    a2Solved = 0
+    bSolved = 0
+    a1Nodes = 0
+    a2Nodes = 0
+    bNodes = 0
+    a1Length = 0
+    a2Length = 0
+    bLength = 0
+    for result in aStar1Results:
+        if result[0] == "solved":
+            a1Nodes += result[2]
+            a1Solved += 1
+            a1Length += result[1].getPath()[1]
+
+    for result in aStar2Results:
+        if result[0] == "solved":
+            a2Nodes += result[2]
+            a2Solved += 1
+            a2Length += result[1].getPath()[1]
+    
+    for result in beam2Results:
+        if result[0] == "solved":
+            bNodes += result[2]
+            bSolved += 1
+            bLength += result[1].getPath()[1]
+           
+    print(f"nodesGenerated: {a1Nodes}, {a2Nodes}, {bNodes}")
+    print(f"numSolved: {a1Solved}, {a2Solved}, {bSolved}")
+    print(f"lengthTotal: {a1Length}, {a2Length}, {bLength}")
+
     
 # Reads the commands from the inputted text file
 def getCommands() -> list:
@@ -29,7 +92,13 @@ def getCommands() -> list:
         return list(map(lambda i: i.replace("\n", ""), f.readlines()))
 
 # Interprets and runs the input command
-def run(rawCommand: str, game: EightPuzzle) -> EightPuzzle:
+def run(rawCommand: str, game: EightPuzzle, maxNodes) -> EightPuzzle:
+    global r
+    global aStar1Results
+    global aStar2Results
+    global beam1Results 
+    global beam2Results
+    
     command = rawCommand.split(" ")
 
     if command[0] == "setState":
@@ -42,28 +111,37 @@ def run(rawCommand: str, game: EightPuzzle) -> EightPuzzle:
         move(command, game)
         return game
     elif command[0] == "randomizeState":
-        randomizeState(command, game)
+        randomizeState(command, game, r)
         return game
     elif command[0] == "solve":
         if command[1] == "A-star":
-            result = aStar(command, game)
+            result = aStar(command, game, maxNodes[0])
+            if command[2] == "h1":
+                aStar1Results.append(result)
+            else:
+                aStar2Results.append(result)
             if result[0] == "solved":
                 path = result[1].getPath()
-                print(f"solved in {path[2]} moves: {path[1]}")
+                if printResultMessages:
+                    print(f"solved in {path[1]} moves: {path[2]}")
                 return result[1]
             elif result[0] == "maxNodes":
-                print(f"Could not be solved within the node limit: generated {result[2]} nodes")
+                if printResultMessages:
+                    print(f"Could not be solved within the node limit: generated {result[2]} nodes")
                 return result[1]
             else:
                 return game
         elif command[1] == "beam":
-            result = beam(command, game)
+            result = beam(command, game, maxNodes[0])
+            beam2Results.append(result)
             if result[0] == "solved":
                 path = result[1].getPath()
-                print(f"solved in {path[2]} moves: {path[1]}")
+                if printResultMessages:
+                    print(f"solved in {path[1]} moves: {path[2]}")
                 return result[1]
             elif result[0] == "maxNodes":
-                print(f"Could not be solved within the node limit: generated {result[2]} nodes")
+                if printResultMessages:
+                    print(f"Could not be solved within the node limit: generated {result[2]} nodes")
                 return result[1]
             else:
                 return game
@@ -71,10 +149,14 @@ def run(rawCommand: str, game: EightPuzzle) -> EightPuzzle:
             print("invalid solve algorithm")
             return game
     elif command[0] == "maxNodes":
-        print("run maxNodes")
+        try:
+            maxNodes[0] = int(command[1])
+        except:
+            print("Invalid input: must be an integer value")
+            
         return game
     else:
-        print("invalid command")
+        print("")
         return game
 
 # setState
@@ -87,7 +169,7 @@ def setState(command: list, game: EightPuzzle):
 
 # printState
 def printState(game: EightPuzzle):
-    print(str(game) + " " + str(game.moves))
+    print(str(game))
 
 # move <direction>
 def move(command: list, game: EightPuzzle):
@@ -110,9 +192,7 @@ def move(command: list, game: EightPuzzle):
     game.move(direction)
 
 # randomizeState <n>
-def randomizeState(command: list, game: EightPuzzle):
-    global r
-    
+def randomizeState(command: list, game: EightPuzzle, r):    
     try:
         n = int(command[1])
     except:
@@ -156,7 +236,7 @@ def aStar(command: list, game: EightPuzzle, maxNodes: int) -> EightPuzzle:
             topMoves = currentGame.moves
         
         if currentGame.isGoal():
-            return ("solved", currentGame, len(reached))
+            return ("solved", currentGame, len(reached), maxNodes)
         
         for childGame in expand(currentGame):
             if str(childGame) not in reached:
@@ -167,7 +247,7 @@ def aStar(command: list, game: EightPuzzle, maxNodes: int) -> EightPuzzle:
                 frontier.put(PrioritizedGame(childGame.f(), childGame))
         
         if len(reached) > maxNodes and maxNodes != -1:
-            return ("maxNodes", currentGame, len(reached))
+            return ("maxNodes", currentGame, len(reached), maxNodes)
     
     return None
        
@@ -208,14 +288,14 @@ def beam(command: list, game: EightPuzzle, maxNodes: int) -> EightPuzzle:
         foundNewBestState = False
         for state in newStates:
             if state.h() == 0:
-                return ("solved", state, len(reached))
+                return ("solved", state, len(reached), maxNodes)
             elif state.h() < minH:
                 minH = state.h()
                 foundNewBestState = True
         
         currentStates = newStates
         if len(reached) > maxNodes and maxNodes != -1:
-            return ("maxNodes", currentStates[0], len(reached))
+            return ("maxNodes", currentStates[0], len(reached), maxNodes)
 
 def bestNeighbors(games: list, reached: dict, k: int) -> list:
     

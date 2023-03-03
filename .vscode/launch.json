@@ -19,6 +19,14 @@
             "program": "/Users/Joshua/Documents/_CWRU/_CSDS-398-AI/project-1/csds-391-project-1/main.py",
             "console": "integratedTerminal",
             "args": "/Users/Joshua/Documents/_CWRU/_CSDS-398-AI/project-1/csds-391-project-1/commandFiles/test1.txt"
+        },
+        {
+            "name": "testing",
+            "type": "python",
+            "request": "launch",
+            "program": "/Users/Joshua/Documents/_CWRU/_CSDS-398-AI/project-1/csds-391-project-1/main.py",
+            "console": "integratedTerminal",
+            "args": "/Users/Joshua/Documents/_CWRU/_CSDS-398-AI/project-1/csds-391-project-1/expFile.txt"
         }
     ]
 }
