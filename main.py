@@ -18,6 +18,7 @@ def main():
         
     commands = getCommands()
     game = EightPuzzle()
+    maxNodes = -1
     
     for command in commands:
         game = run(command, game)
@@ -119,7 +120,7 @@ class PrioritizedGame:
     priority: int
     item: Any=field(compare=False)
 
-def aStar(command: list, game: EightPuzzle) -> EightPuzzle:
+def aStar(command: list, game: EightPuzzle, maxNodes: int) -> EightPuzzle:
     currentGame: EightPuzzle = game
     currentGame.resetMoves()
     currentGame.heuristic = command[2]
@@ -134,18 +135,15 @@ def aStar(command: list, game: EightPuzzle) -> EightPuzzle:
     
     while frontier.qsize() != 0:
         currentGame = frontier.get().item
-        # print(currentGame.f())
         
         if currentGame.h() < minH:
             minH = currentGame.h()
-            # print(f"new min:{minH} {str(currentGame)} {currentGame.moves}")
             
         if currentGame.moves > topMoves:
             topMoves = currentGame.moves
-            # print(f"new max:{topMoves} {str(currentGame)} {currentGame.h()}")
         
         if currentGame.isGoal():
-            return currentGame
+            return ("solved", currentGame, len(reached))
         
         for childGame in expand(currentGame):
             if str(childGame) not in reached:
@@ -154,6 +152,9 @@ def aStar(command: list, game: EightPuzzle) -> EightPuzzle:
             elif childGame.g() < reached[str(childGame)].g():
                 reached[str(childGame)] = childGame
                 frontier.put(PrioritizedGame(childGame.f(), childGame))
+        
+        if len(reached) > maxNodes and maxNodes != -1:
+            return ("maxNodes", currentGame, len(reached))
     
     return None
        
@@ -169,7 +170,7 @@ def expand(game: EightPuzzle) -> list:
     
     return newGames
 
-def beam(command: list, game: EightPuzzle) -> EightPuzzle:
+def beam(command: list, game: EightPuzzle, maxNodes: int) -> EightPuzzle:
     try:
         k = int(command[2])
     except:
@@ -194,16 +195,14 @@ def beam(command: list, game: EightPuzzle) -> EightPuzzle:
         foundNewBestState = False
         for state in newStates:
             if state.h() == 0:
-                return state
+                return ("solved", state, len(reached))
             elif state.h() < minH:
                 minH = state.h()
                 foundNewBestState = True
         
-        # if not foundNewBestState:
-        #     newStates.sort(key=lambda s: s.h())
-        #     return newStates[0]
-        # else:
         currentStates = newStates
+        if len(reached) > maxNodes and maxNodes != -1:
+            return ("maxNodes", currentStates[0], len(reached))
 
 def bestNeighbors(games: list, reached: dict, k: int) -> list:
     

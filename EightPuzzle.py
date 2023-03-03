@@ -21,6 +21,7 @@ class EightPuzzle():
     def __init__(self, heuristic="h1", parent=None):
         self.state = ["b", "1", "2", "3", "4", "5", "6", "7", "8"]
         self.moves = 0
+        self.movesList = []
         self.heuristic = heuristic
         self.parent = parent
 
@@ -73,6 +74,7 @@ class EightPuzzle():
     # Reset moves
     def resetMoves(self):
         self.moves = 0
+        self.movesList = []
 
     # Distance from start position
     def g(self) -> int:
@@ -137,11 +139,7 @@ class EightPuzzle():
         return self.g() + self.h()
 
     # is Goal
-    def isGoal(self) -> bool:
-        
-        # print(self.state)
-        # print(EightPuzzle.goalStateList)
-        
+    def isGoal(self) -> bool:        
         for (a, b) in zip(self.state, EightPuzzle.goalStateList):
             if a != b:
                 return False
@@ -157,16 +155,22 @@ class EightPuzzle():
                 match self.getBlankPos():
                     case 0:
                         self.swapSquares(0, 1)
+                        self.movesList.append(Direction.RIGHT)
                     case 3:
                         self.swapSquares(3, 4)
+                        self.movesList.append(Direction.RIGHT)
                     case 6:
                         self.swapSquares(6, 7)
+                        self.movesList.append(Direction.RIGHT)
                     case 1:
                         self.swapSquares(1, 2)
+                        self.movesList.append(Direction.RIGHT)
                     case 4:
                         self.swapSquares(4, 5)
+                        self.movesList.append(Direction.RIGHT)
                     case 7:
                         self.swapSquares(7, 8)
+                        self.movesList.append(Direction.RIGHT)
                     case _:
                         print(
                             f"invalid move: move right on rightmost column. b is {self.getBlankPos()}")
@@ -175,16 +179,22 @@ class EightPuzzle():
                 match self.getBlankPos():
                     case 6:
                         self.swapSquares(6, 3)
+                        self.movesList.append(Direction.UP)
                     case 7:
                         self.swapSquares(7, 4)
+                        self.movesList.append(Direction.UP)
                     case 8:
                         self.swapSquares(8, 5)
+                        self.movesList.append(Direction.UP)
                     case 3:
                         self.swapSquares(3, 0)
+                        self.movesList.append(Direction.UP)
                     case 4:
                         self.swapSquares(4, 1)
+                        self.movesList.append(Direction.UP)
                     case 5:
                         self.swapSquares(5, 2)
+                        self.movesList.append(Direction.UP)
                     case _:
                         print(
                             f"invalid move: move up on top column. b is {self.getBlankPos()}")
@@ -193,16 +203,22 @@ class EightPuzzle():
                 match self.getBlankPos():
                     case 2:
                         self.swapSquares(2, 1)
+                        self.movesList.append(Direction.LEFT)
                     case 5:
                         self.swapSquares(5, 4)
+                        self.movesList.append(Direction.LEFT)
                     case 8:
                         self.swapSquares(8, 7)
+                        self.movesList.append(Direction.LEFT)
                     case 1:
                         self.swapSquares(1, 0)
+                        self.movesList.append(Direction.LEFT)
                     case 4:
                         self.swapSquares(4, 3)
+                        self.movesList.append(Direction.LEFT)
                     case 7:
                         self.swapSquares(7, 6)
+                        self.movesList.append(Direction.LEFT)
                     case _:
                         print(
                             f"invalid move: move left on leftmost column. b is {self.getBlankPos()}")
@@ -211,16 +227,22 @@ class EightPuzzle():
                 match self.getBlankPos():
                     case 0:
                         self.swapSquares(0, 3)
+                        self.movesList.append(Direction.DOWN)
                     case 1:
                         self.swapSquares(1, 4)
+                        self.movesList.append(Direction.DOWN)
                     case 2:
                         self.swapSquares(2, 5)
+                        self.movesList.append(Direction.DOWN)
                     case 3:
                         self.swapSquares(3, 6)
+                        self.movesList.append(Direction.DOWN)
                     case 4:
                         self.swapSquares(4, 7)
+                        self.movesList.append(Direction.DOWN)
                     case 5:
                         self.swapSquares(5, 8)
+                        self.movesList.append(Direction.DOWN)
                     case _:
                         print(f"invalid move: move left on leftmost column. b is {self.getBlankPos()}")
                         isValid = False
@@ -230,8 +252,6 @@ class EightPuzzle():
 
         if isValid:
             self.moves += 1
-        
-        # if self.state[self.getBlankPos()] != "b":
-            # print(f"invalid bPos: {self.getBlankPos()} {self.state}")
-        # else:
-            # print("valid move")
+    
+    def getPath(self):
+        return (self.movesList, len(self.movesList))
