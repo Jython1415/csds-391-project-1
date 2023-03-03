@@ -1,14 +1,15 @@
 setState b12 345 678
 randomizeState 100
 printState
-solve A-star h2
-
-randomizeState 100
-printState
-solve A-star h2
+solve beam 15
 printState
 
 randomizeState 100
 printState
-solve A-star h2
+solve beam 15
+printState
+
+setState 756 143 28b
+printState
+solve beam 15
 printState

@@ -52,8 +52,7 @@ def run(rawCommand: str, game: EightPuzzle) -> EightPuzzle:
             else:
                 return newGame
         elif command[1] == "beam":
-            print("run beam")
-            return game
+            return beam(command, game)
         else:
             print("invalid solve algorithm")
             return game
@@ -92,6 +91,7 @@ def move(command: list, game: EightPuzzle):
         direction = Direction.DOWN
     elif command != []:
         print(f"invalid direction: {command[1]}")
+        print(command)
     
     game.move(direction)
 
@@ -102,8 +102,11 @@ def randomizeState(command: list, game: EightPuzzle):
     try:
         n = int(command[1])
     except:
-        print("Invalid number of moves (not an integer)")
-        return
+        if type(command) == int:
+            n = command
+        else:
+            print("Invalid number of moves (not an integer)")
+            return
     
     game.setState(goalState)
     game.resetMoves()
@@ -165,6 +168,64 @@ def expand(game: EightPuzzle) -> list:
         newGames.append(newGame)
     
     return newGames
+
+def beam(command: list, game: EightPuzzle) -> EightPuzzle:
+    try:
+        k = int(command[2])
+    except:
+        print(f"invalid k input {command[2]}")
+        return game
+    
+    currentStates = list()
+    game.resetMoves()
+    game.heuristic = "h2"
+    
+    reached = dict()
+    reached[str(game)] = game
+    
+    for _ in range(k):
+        currentStates.append(copy.deepcopy(game))
+    
+    minH = game.h()
+    
+    while len(currentStates) != 0:
+        newStates = bestNeighbors(currentStates, reached, k)
+        
+        foundNewBestState = False
+        for state in newStates:
+            if state.h() == 0:
+                return state
+            elif state.h() < minH:
+                minH = state.h()
+                foundNewBestState = True
+        
+        # if not foundNewBestState:
+        #     newStates.sort(key=lambda s: s.h())
+        #     return newStates[0]
+        # else:
+        currentStates = newStates
+
+def bestNeighbors(games: list, reached: dict, k: int) -> list:
+    
+    candidates = list()
+    
+    for game in games:
+        for candidate in expand(game):
+            if not str(candidate) in reached:
+                reached[str(candidate)] = candidate
+                candidates.append(candidate)
+            elif candidate.h() < reached[str(candidate)].h():
+                reached[str(candidate)] = candidate
+                candidates.append(candidate)
+    
+    candidates.sort(key=lambda s: s.h())
+    
+    result = []
+    i = 0
+    while i < len(candidates) and i < k:
+        result.append(candidates[i])
+        i += 1
+    return result
 
 if __name__ == "__main__":
     main()
