@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "main.py",
+            "type": "python",
+            "request": "launch",
+            "program": "/Users/Joshua/Documents/_CWRU/_CSDS-398-AI/project-1/csds-391-project-1/main.py",
+            "console": "integratedTerminal",
+            "args": "/Users/Joshua/Documents/_CWRU/_CSDS-398-AI/project-1/csds-391-project-1/commandFiles/test1.txt"
+        }
+    ]
+}

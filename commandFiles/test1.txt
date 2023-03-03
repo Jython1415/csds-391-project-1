@@ -1,9 +1,16 @@
 setState b12 345 678
+randomizeState 10
 printState
-move down
+setState b12 345 678
+randomizeState 10
 printState
-randomizeState 1000
+setState b12 345 678
+randomizeState 10
+printState
+setState b12 345 678
+randomizeState 10
 printState
 solve A-star h1
+printState
 solve beam 10
 maxNodes 1000

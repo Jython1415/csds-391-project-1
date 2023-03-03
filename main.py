@@ -1,13 +1,23 @@
 import sys
 from EightPuzzle import *
 import random
+import queue
+from dataclasses import dataclass, field
+from typing import Any
+import copy
 
 # Constants
 goalState = "b12345678"
+r:random.Random = None
 
 # MAIN
 def main():
-    random.seed(0)
+    global r
+    r = random.Random()
+    r.seed(0)
+    
+    for i in range(10):
+        print(r.randint(1,2))
     
     commands = getCommands()
     game = EightPuzzle()
@@ -27,14 +37,14 @@ def run(rawCommand: str, game: EightPuzzle):
     if command[0] == "setState":
         setState(command, game)
     elif command[0] == "printState":
-        printState(game)
+        printState(f"{game} {game.isGoal()}")
     elif command[0] == "move":
         move(command, game)
     elif command[0] == "randomizeState":
         randomizeState(command, game)
     elif command[0] == "solve":
         if command[1] == "A-star":
-            print("run A-star")
+            game = aStar(command, game)
         elif command[1] == "beam":
             print("run beam")
         else:
@@ -73,6 +83,7 @@ def move(command: list, game: EightPuzzle):
 
 # randomizeState <n>
 def randomizeState(command: list, game: EightPuzzle):
+    global r
     
     try:
         n = int(command[1])
@@ -83,8 +94,49 @@ def randomizeState(command: list, game: EightPuzzle):
     game.setState(goalState)
     
     for _ in range(n):
-        game.move(random.choice(list(game.getValidMoves())))
+        game.move(r.choice(list(game.getValidMoves())))
+
+@dataclass(order=True)
+class PrioritizedGame:
+    priority: int
+    item: Any=field(compare=False)
+
+def aStar(command: list, game: EightPuzzle) -> EightPuzzle:
+    currentGame: EightPuzzle = game
+    currentGame.resetMoves()
+    currentGame.heuristic = command[2]
     
+    frontier: queue.PriorityQueue = queue.PriorityQueue()
+    frontier.put(PrioritizedGame(currentGame.f(), currentGame))
+    reached = dict()
+    reached[str(currentGame)] = currentGame
+    
+    while frontier.qsize() != 0:
+        currentGame = frontier.get().item
+        print()
+        
+        if currentGame.isGoal():
+            return currentGame
+        
+        for childGame in expand(currentGame):
+            if str(childGame) not in reached:
+                reached[str(childGame)] = childGame
+                frontier.put(PrioritizedGame(childGame.f(), childGame))
+            elif childGame.g() < reached[str(childGame)].g():
+                reached[str(childGame)] = childGame
+                frontier.put(PrioritizedGame(childGame.f(), childGame))
+       
+def expand(game: EightPuzzle) -> list:
+    
+    newGames = list()
+    
+    for move in game.getValidMoves():
+        newGame = copy.deepcopy(game)
+        newGame.move(move)
+        newGame.parent = game
+        newGames.append(newGame)
+    
+    return newGames
 
 if __name__ == "__main__":
     main()
