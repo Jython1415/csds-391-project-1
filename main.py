@@ -14,18 +14,13 @@ r:random.Random = None
 def main():
     global r
     r = random.Random()
-    r.seed(0)
-    
-    # l = list()
-    # for _ in range(3):
-    #     l.append(str(r.randint(0,9)))
-    # print("".join(l))
-    
+    r.seed("hi")
+        
     commands = getCommands()
     game = EightPuzzle()
     
     for command in commands:
-        run(command, game)
+        game = run(command, game)
     
 # Reads the commands from the inputted text file
 def getCommands() -> list:
@@ -33,28 +28,41 @@ def getCommands() -> list:
         return list(map(lambda i: i.replace("\n", ""), f.readlines()))
 
 # Interprets and runs the input command
-def run(rawCommand: str, game: EightPuzzle):
+def run(rawCommand: str, game: EightPuzzle) -> EightPuzzle:
     command = rawCommand.split(" ")
 
     if command[0] == "setState":
         setState(command, game)
+        return game
     elif command[0] == "printState":
         printState(game)
+        return game
     elif command[0] == "move":
         move(command, game)
+        return game
     elif command[0] == "randomizeState":
         randomizeState(command, game)
+        return game
     elif command[0] == "solve":
         if command[1] == "A-star":
-            game = aStar(command, game)
+            newGame = aStar(command, game)
+            if newGame == None:
+                print("no return")
+                return game
+            else:
+                return newGame
         elif command[1] == "beam":
             print("run beam")
+            return game
         else:
             print("invalid solve algorithm")
+            return game
     elif command[0] == "maxNodes":
         print("run maxNodes")
+        return game
     else:
         print("invalid command")
+        return game
 
 # setState
 def setState(command: list, game: EightPuzzle):
@@ -82,7 +90,7 @@ def move(command: list, game: EightPuzzle):
         direction = Direction.LEFT
     elif command[1] == "down":
         direction = Direction.DOWN
-    else:
+    elif command != []:
         print(f"invalid direction: {command[1]}")
     
     game.move(direction)
@@ -90,11 +98,6 @@ def move(command: list, game: EightPuzzle):
 # randomizeState <n>
 def randomizeState(command: list, game: EightPuzzle):
     global r
-    
-    # l = list()
-    # for _ in range(3):
-    #     l.append(str(r.randint(0,9)))
-    # print("".join(l))
     
     try:
         n = int(command[1])
@@ -106,7 +109,7 @@ def randomizeState(command: list, game: EightPuzzle):
     game.resetMoves()
     
     for _ in range(n):
-        game.move(r.choice(list(game.getValidMoves())))
+        game.move(r.choice(game.getValidMoves()))
 
 @dataclass(order=True)
 class PrioritizedGame:
@@ -123,8 +126,20 @@ def aStar(command: list, game: EightPuzzle) -> EightPuzzle:
     reached = dict()
     reached[str(currentGame)] = currentGame
     
+    minH = currentGame.h()
+    topMoves = currentGame.moves
+    
     while frontier.qsize() != 0:
         currentGame = frontier.get().item
+        # print(currentGame.f())
+        
+        if currentGame.h() < minH:
+            minH = currentGame.h()
+            # print(f"new min:{minH} {str(currentGame)} {currentGame.moves}")
+            
+        if currentGame.moves > topMoves:
+            topMoves = currentGame.moves
+            # print(f"new max:{topMoves} {str(currentGame)} {currentGame.h()}")
         
         if currentGame.isGoal():
             return currentGame
@@ -136,10 +151,12 @@ def aStar(command: list, game: EightPuzzle) -> EightPuzzle:
             elif childGame.g() < reached[str(childGame)].g():
                 reached[str(childGame)] = childGame
                 frontier.put(PrioritizedGame(childGame.f(), childGame))
+    
+    return None
        
 def expand(game: EightPuzzle) -> list:
     
-    newGames = list()
+    newGames = []
     
     for move in game.getValidMoves():
         newGame = copy.deepcopy(game)

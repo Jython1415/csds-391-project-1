@@ -56,8 +56,8 @@ class EightPuzzle():
 
     # Get valid moves
     def getValidMoves(self) -> set:
-        moves = set([Direction.RIGHT, Direction.UP,
-                    Direction.LEFT, Direction.DOWN])
+        moves = [Direction.RIGHT, Direction.UP,
+                    Direction.LEFT, Direction.DOWN]
 
         if self.getBlankPos() == 2 or self.getBlankPos() == 5 or self.getBlankPos() == 8:
             moves.remove(Direction.RIGHT)
@@ -93,7 +93,7 @@ class EightPuzzle():
         return (int(index / 3), index % 3)
 
     # get the goal position of a tile
-    def getGoalPos(self, tile: str):
+    def getGoalPos(tile: str):
         match tile:
             case "b":
                 return (0, 0)
@@ -121,19 +121,20 @@ class EightPuzzle():
     def h2(self) -> int:
         totalDistance = 0
         for tile in self.state:
-            currentPos = EightPuzzle.getCurrentPos(tile)
+            currentPos = self.getCurrentPos(tile)
             goalPos = EightPuzzle.getGoalPos(tile)
-            totalDistance += abs(currentPos[0] - goalPos[0]) + \
-                abs(currentPos[1] - goalPos[1])
+            totalDistance += abs(currentPos[0] - goalPos[0]) + abs(currentPos[1] - goalPos[1])
+        return totalDistance
 
+    def h(self) -> int:
+        if self.heuristic == "h1":
+            return self.h1()
+        else:
+            return self.h2()
+    
     # F
     def f(self) -> int:
-        if self.heuristic == "h1":
-            return self.g() + self.h1()
-        elif self.heuristic == "h2":
-            return self.g() + self.h2()
-        else:
-            return self.g()
+        return self.g() + self.h()
 
     # is Goal
     def isGoal(self) -> bool:
