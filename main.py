@@ -125,7 +125,6 @@ def aStar(command: list, game: EightPuzzle) -> EightPuzzle:
     
     while frontier.qsize() != 0:
         currentGame = frontier.get().item
-        print()
         
         if currentGame.isGoal():
             return currentGame
